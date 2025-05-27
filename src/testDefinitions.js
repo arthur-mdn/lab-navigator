@@ -1,4 +1,4 @@
-import {FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap, FiMaximize, FiShare2, FiMic, FiCamera, FiVolume2} from 'react-icons/fi';
+import {FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap, FiMaximize, FiShare2, FiMic, FiCamera, FiVolume2, FiLock} from 'react-icons/fi';
 
 const testDefinitions = [
     {
@@ -152,6 +152,20 @@ const testDefinitions = [
                 const utterance = new SpeechSynthesisUtterance('Bonjour, ceci est un test de synthèse vocale.');
                 speechSynthesis.speak(utterance);
                 onSuccess('Voix parlée');
+            } catch (err) {
+                onError(err.message);
+            }
+        },
+    },
+    {
+        id: 'wake-lock',
+        label: 'Wake Lock (garder écran allumé et empêcher veille)',
+        icon: FiLock,
+        autoDetect: false,
+        run: async (onSuccess, onError) => {
+            try {
+                const wakeLock = await navigator.wakeLock.request('screen');
+                onSuccess('Wake lock actif');
             } catch (err) {
                 onError(err.message);
             }
