@@ -6,6 +6,6 @@ services:
     container_name: laboratory-client
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.Eradmin-client.rule=Host(`${DOMAIN_NAME}`)"
-      - "traefik.http.routers.Eradmin-client.entrypoints=websecure"
-      - "traefik.http.routers.Eradmin-client.tls.certresolver=myresolver"
+      - "traefik.http.routers.Laboratory.rule=Host(`${DOMAIN_NAME}`)"
+      - "traefik.http.routers.Laboratory.entrypoints=websecure"
+      - "traefik.http.routers.Laboratory.tls.certresolver=myresolver"
