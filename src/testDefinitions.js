@@ -71,6 +71,20 @@ const testDefinitions = [
         },
     },
     {
+        id: 'clipboard-write',
+        label: 'Écriture dans le presse-papiers',
+        icon: FiClipboard,
+        autoDetect: false,
+        run: async (onSuccess, onError) => {
+            try {
+                await navigator.clipboard.writeText('Texte copié depuis le laboratoire !');
+                onSuccess('Texte copié avec succès');
+            } catch (err) {
+                onError(err.message);
+            }
+        },
+    },
+    {
         id: 'resize',
         label: 'Redimensionnement',
         icon: FiSmartphone,
