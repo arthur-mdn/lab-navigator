@@ -1,4 +1,4 @@
-import {FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap, FiMaximize, FiShare2, FiMic, FiCamera} from 'react-icons/fi';
+import {FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap, FiMaximize, FiShare2, FiMic, FiCamera, FiVolume2} from 'react-icons/fi';
 
 const testDefinitions = [
     {
@@ -137,6 +137,21 @@ const testDefinitions = [
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true });
                 if (setStream) setStream(stream);
                 onSuccess('Caméra activée');
+            } catch (err) {
+                onError(err.message);
+            }
+        },
+    },
+    {
+        id: 'speech-synth',
+        label: 'Synthèse vocale',
+        icon: FiVolume2,
+        autoDetect: false,
+        run: (onSuccess, onError) => {
+            try {
+                const utterance = new SpeechSynthesisUtterance('Bonjour, ceci est un test de synthèse vocale.');
+                speechSynthesis.speak(utterance);
+                onSuccess('Voix parlée');
             } catch (err) {
                 onError(err.message);
             }
