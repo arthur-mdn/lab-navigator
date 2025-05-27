@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import MicVisualizer from './MicVisualizer';
 import CameraPreview from './CameraPreview';
+import {FiLock, FiUnlock} from "react-icons/fi";
 
 function TestPanel({ log, markTest, tests }) {
     const [micStream, setMicStream] = useState(null);
     const [camStream, setCamStream] = useState(null);
+    const [wakeLockActive, setWakeLockActive] = useState(false);
 
     const toggleStream = async (id, testFn, streamState, setStream) => {
         if (streamState) {
@@ -26,13 +28,16 @@ function TestPanel({ log, markTest, tests }) {
                 log(`${id} échoué : ${msg}`, 'error');
                 markTest(id, false);
             },
-            setStream
+            setStream,
+            id === 'wake-lock' ? (key, state) => setWakeLockActive(state) : undefined
         );
     };
     return (
         <div>
             {tests.filter(t => !t.autoDetect).map((test) => {
-                const Icon = test.icon;
+                const Icon = test.id === 'wake-lock'
+                    ? wakeLockActive ? FiUnlock : FiLock
+                    : test.icon;
                 const isMic = test.id === 'mic';
                 const isCam = test.id === 'camera';
                 return (

@@ -1,5 +1,7 @@
 import {FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap, FiMaximize, FiShare2, FiMic, FiCamera, FiVolume2, FiLock} from 'react-icons/fi';
 
+let wakeLockRef = null;
+
 const testDefinitions = [
     {
         id: 'vibration',
@@ -159,13 +161,21 @@ const testDefinitions = [
     },
     {
         id: 'wake-lock',
-        label: 'Wake Lock (garder écran allumé et empêcher veille)',
+        label: 'Wake Lock (écran allumé)',
         icon: FiLock,
         autoDetect: false,
-        run: async (onSuccess, onError) => {
+        run: async (onSuccess, onError, setStream, toggleState) => {
             try {
-                const wakeLock = await navigator.wakeLock.request('screen');
-                onSuccess('Wake lock actif');
+                if (wakeLockRef) {
+                    await wakeLockRef.release();
+                    wakeLockRef = null;
+                    toggleState('wake-lock', false);
+                    onSuccess('Wake lock désactivé');
+                } else {
+                    wakeLockRef = await navigator.wakeLock.request('screen');
+                    toggleState('wake-lock', true);
+                    onSuccess('Wake lock activé');
+                }
             } catch (err) {
                 onError(err.message);
             }
