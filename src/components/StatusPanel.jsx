@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import {FiBattery, FiBatteryCharging} from "react-icons/fi";
 
 function StatusPanel() {
     const [fps, setFps] = useState(null);
     const [client, setClient] = useState(null);
+    const [battery, setBattery] = useState(null);
 
     useEffect(() => {
         let raf;
@@ -16,6 +18,26 @@ function StatusPanel() {
         };
         loop();
         return () => cancelAnimationFrame(raf);
+    }, []);
+
+    useEffect(() => {
+        const updateBattery = async () => {
+            try {
+                const b = await navigator.getBattery();
+                const refresh = () => {
+                    setBattery({
+                        level: Math.round(b.level * 100),
+                        charging: b.charging
+                    });
+                };
+                b.addEventListener('levelchange', refresh);
+                b.addEventListener('chargingchange', refresh);
+                refresh();
+            } catch {
+                setBattery(null);
+            }
+        };
+        updateBattery();
     }, []);
 
     useEffect(() => {
@@ -34,7 +56,14 @@ function StatusPanel() {
         <div className={'infos'}>
             <h3>Infos</h3>
             <div>FPS : {fps ?? '...'} fps</div>
-            <div className="text-sm break-words">
+            <div>
+                Batterie : {battery ? (
+                <>
+                    {battery.charging ? <FiBatteryCharging/> : <FiBattery/>} {battery.level}%
+                </>
+            ) : 'N/A'}
+            </div>
+            <div>
                 Client : {client ?? '...'}
             </div>
         </div>
