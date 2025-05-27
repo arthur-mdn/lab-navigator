@@ -24,8 +24,10 @@ export default function useAutoDetection(log, markTest) {
 
         const handleVisibility = () => {
             if (document.visibilityState === 'visible') {
-                log('Page rendue visible', 'event');
+                log("Utilisateur revenu sur l'onglet", 'event');
                 markTest('visibility', true);
+            } else {
+                log("Utilisateur a quitté l'onglet", 'event');
             }
         };
 
