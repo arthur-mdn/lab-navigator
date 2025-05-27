@@ -1,4 +1,4 @@
-import {FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap, FiMaximize, FiShare2} from 'react-icons/fi';
+import {FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap, FiMaximize, FiShare2, FiMic} from 'react-icons/fi';
 
 const testDefinitions = [
     {
@@ -109,6 +109,21 @@ const testDefinitions = [
                 onSuccess();
             } else {
                 onError('Non supporté');
+            }
+        },
+    },
+    {
+        id: 'mic',
+        label: 'Micro',
+        icon: FiMic,
+        autoDetect: false,
+        run: async (onSuccess, onError, setStream) => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                if (setStream) setStream(stream);
+                onSuccess('Micro activé');
+            } catch (err) {
+                onError(err.message);
             }
         },
     },
