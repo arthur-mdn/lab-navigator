@@ -201,7 +201,7 @@ const testDefinitions = [
     },
     {
         id: 'visibility',
-        label: 'Page visible',
+        label: "Page visible (changez d'onglet pour déclencher)",
         icon: FiEye,
         autoDetect: true,
     }
