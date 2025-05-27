@@ -54,17 +54,19 @@ function StatusPanel() {
 
     return (
         <div className={'infos'}>
-            <h3>Infos</h3>
-            <div><FiMonitor/> {fps ?? '...'} FPS</div>
+            <h2>Infos</h2>
             <div>
-                {battery ? (
-                <>
-                    {battery.charging ? <FiBatteryCharging/> : <FiBattery/>} {battery.level}%
-                </>
-            ) : 'Batterie indisponible '}
-            </div>
-            <div>
-                <FiUser/> {client ?? '...'}
+                <div><FiMonitor/> {fps ?? '...'} FPS</div>
+                <div>
+                    {battery ? (
+                        <>
+                            {battery.charging ? <FiBatteryCharging/> : <FiBattery/>} {battery.level}%
+                        </>
+                    ) : 'Batterie indisponible '}
+                </div>
+                <div>
+                    <FiUser/> {client ?? '...'}
+                </div>
             </div>
         </div>
     );

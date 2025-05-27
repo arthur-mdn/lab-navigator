@@ -25,8 +25,6 @@ function App() {
                 <StatusPanel/>
                 <TestPanel log={log} markTest={markTest} tests={testDefinitions} />
                 <LiveConsole logs={logs} clearLogs={() => setLogs([])} />
-            </div>
-            <div>
                 <Checklist tests={testDefinitions} checkedTests={checkedTests} setCheckedTests={setCheckedTests} />
             </div>
         </div>
