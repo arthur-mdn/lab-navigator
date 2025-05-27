@@ -1,4 +1,4 @@
-import { FiMapPin, FiBell, FiSmartphone, FiCpu, FiMoon, FiWifi, FiEye, FiZap } from 'react-icons/fi';
+import { FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap } from 'react-icons/fi';
 
 const testDefinitions = [
     {
@@ -53,6 +53,20 @@ const testDefinitions = [
                         onError(`Permission refusée : ${perm}`);
                     }
                 });
+            }
+        },
+    },
+    {
+        id: 'clipboard-read',
+        label: 'Lecture du presse-papiers',
+        icon: FiClipboard,
+        autoDetect: false,
+        run: async (onSuccess, onError) => {
+            try {
+                const text = await navigator.clipboard.readText();
+                onSuccess(`Texte lu dans le clipboard : ${text}`);
+            } catch (err) {
+                onError(err.message);
             }
         },
     },
