@@ -6,6 +6,7 @@ import useLiveConsole from './hooks/useLiveConsole';
 import useAutoDetection from './hooks/useAutoDetection';
 import testDefinitions from './testDefinitions';
 import './index.css';
+import StatusPanel from "./components/StatusPanel.jsx";
 
 function App() {
     const { logs, log } = useLiveConsole();
@@ -21,6 +22,7 @@ function App() {
         <div>
             <div>
                 <h1>🌐 Laboratoire des fonctionnalités navigateur</h1>
+                <StatusPanel/>
                 <TestPanel log={log} markTest={markTest} tests={testDefinitions} />
                 <LiveConsole logs={logs} />
             </div>

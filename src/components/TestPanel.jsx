@@ -49,7 +49,7 @@ function TestPanel({ log, markTest, tests }) {
                                         : runTest(test.id, test.run)
                             }
                         >
-                            {Icon && <Icon />}<span>Test {test.label}</span>
+                            {Icon && <Icon />}<span> {test.label}</span>
                             {isMic && micStream && (
                                 <MicVisualizer stream={micStream} onStop={() => setMicStream(null)} />
                             )}
