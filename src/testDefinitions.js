@@ -1,4 +1,4 @@
-import { FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap } from 'react-icons/fi';
+import {FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap, FiMaximize} from 'react-icons/fi';
 
 const testDefinitions = [
     {
@@ -79,6 +79,20 @@ const testDefinitions = [
             try {
                 await navigator.clipboard.writeText('Texte copié depuis le laboratoire !');
                 onSuccess('Texte copié avec succès');
+            } catch (err) {
+                onError(err.message);
+            }
+        },
+    },
+    {
+        id: 'fullscreen',
+        label: 'Basculer en plein écran',
+        icon: FiMaximize,
+        autoDetect: false,
+        run: (onSuccess, onError) => {
+            try {
+                document.documentElement.requestFullscreen();
+                onSuccess();
             } catch (err) {
                 onError(err.message);
             }
