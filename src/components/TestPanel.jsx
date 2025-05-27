@@ -33,7 +33,7 @@ function TestPanel({ log, markTest, tests }) {
         );
     };
     return (
-        <div>
+        <div style={{display:"flex", flexWrap:'wrap', gap:'0.5rem'}}>
             {tests.filter(t => !t.autoDetect).map((test) => {
                 const Icon = test.id === 'wake-lock'
                     ? wakeLockActive ? FiUnlock : FiLock

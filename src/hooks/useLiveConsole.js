@@ -15,7 +15,7 @@ function useLiveConsole() {
         setLogs((prev) => [...prev, `[${time}] ${logPrefix[type]} ${message}`]);
     };
 
-    return { logs, log };
+    return { logs, log, setLogs};
 }
 
 export default useLiveConsole;

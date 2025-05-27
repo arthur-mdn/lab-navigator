@@ -43,7 +43,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #383a98;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -67,26 +67,43 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
+#root{
+  padding: 1.5rem;
+  background-color: #1a1a1a;
+  display: flex;
+  gap: 1rem;
+}
 .p-2{
     padding: 2rem;
 }
 
 .console{
-  background-color: #1a1a1a;
+  background-color: #242424;
   color: #ffffff;
   font-family: monospace;
-  padding: 1rem;
+  padding: 0 1rem 1rem;
   border-radius: 8px;
-  overflow-x: auto;
-  overflow-y: scroll;
-  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+.console_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #3e3e3e;
+    padding: 1rem 0;
+}
+.console_content{
+    overflow-y: auto;
+    padding: 0.5rem;
+  height: 200px;
 }
 
 .infos{
-    background-color: #1a1a1a;
+    background-color: #242424;
     color: #ffffff;
     font-family: monospace;
     padding: 1rem;
     border-radius: 8px;
+  border: 1px solid #3e3e3e;
 }

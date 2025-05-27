@@ -1,6 +1,6 @@
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
 
-function LiveConsole({ logs }) {
+function LiveConsole({ logs, clearLogs }) {
     const consoleRef = useRef(null);
 
     useEffect(() => {
@@ -10,10 +10,22 @@ function LiveConsole({ logs }) {
     }, [logs]);
 
     return (
-        <div ref={consoleRef} className="console">
-            {logs.map((log, idx) => (
-                <div key={idx}>{log}</div>
-            ))}
+        <div className="flex flex-col gap-2">
+
+            <div className={"console"}>
+                <div className={"console_header"}>
+                    <h2>Console</h2>
+                    <button onClick={clearLogs}>
+                        🗑️ Vider la console
+                    </button>
+                </div>
+                <div ref={consoleRef} className={"console_content"}>
+                    {logs.map((log, idx) => (
+                        <div key={idx}>{log}</div>
+                    ))}
+                </div>
+
+            </div>
         </div>
     );
 }

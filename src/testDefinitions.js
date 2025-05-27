@@ -161,7 +161,7 @@ const testDefinitions = [
     },
     {
         id: 'wake-lock',
-        label: 'Wake Lock (écran allumé)',
+        label: 'Wake Lock (garder écran allumé et empêcher la veille)',
         icon: FiLock,
         autoDetect: false,
         run: async (onSuccess, onError, setStream, toggleState) => {

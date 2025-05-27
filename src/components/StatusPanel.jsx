@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {FiBattery, FiBatteryCharging} from "react-icons/fi";
+import {FiBattery, FiBatteryCharging, FiMonitor, FiUser} from "react-icons/fi";
 
 function StatusPanel() {
     const [fps, setFps] = useState(null);
@@ -55,16 +55,16 @@ function StatusPanel() {
     return (
         <div className={'infos'}>
             <h3>Infos</h3>
-            <div>FPS : {fps ?? '...'} fps</div>
+            <div><FiMonitor/> {fps ?? '...'} FPS</div>
             <div>
-                Batterie : {battery ? (
+                {battery ? (
                 <>
                     {battery.charging ? <FiBatteryCharging/> : <FiBattery/>} {battery.level}%
                 </>
-            ) : 'N/A'}
+            ) : 'Batterie indisponible '}
             </div>
             <div>
-                Client : {client ?? '...'}
+                <FiUser/> {client ?? '...'}
             </div>
         </div>
     );
