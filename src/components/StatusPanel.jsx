@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 function StatusPanel() {
     const [fps, setFps] = useState(null);
+    const [client, setClient] = useState(null);
 
     useEffect(() => {
         let raf;
@@ -17,10 +18,25 @@ function StatusPanel() {
         return () => cancelAnimationFrame(raf);
     }, []);
 
+    useEffect(() => {
+        const uaData = navigator.userAgentData;
+        if (uaData) {
+            const platform = uaData.platform;
+            const brands = uaData.brands.map(b => b.brand).join(', ');
+            setClient(`${platform} / ${brands}`);
+        } else {
+            setClient(navigator.userAgent);
+        }
+    }, []);
+
+
     return (
         <div className={'infos'}>
             <h3>Infos</h3>
             <div>FPS : {fps ?? '...'} fps</div>
+            <div className="text-sm break-words">
+                Client : {client ?? '...'}
+            </div>
         </div>
     );
 }
