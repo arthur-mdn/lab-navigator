@@ -1,4 +1,4 @@
-import {FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap, FiMaximize} from 'react-icons/fi';
+import {FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap, FiMaximize, FiShare2} from 'react-icons/fi';
 
 const testDefinitions = [
     {
@@ -95,6 +95,20 @@ const testDefinitions = [
                 onSuccess();
             } catch (err) {
                 onError(err.message);
+            }
+        },
+    },
+    {
+        id: 'share',
+        label: 'Partage natif',
+        icon: FiShare2,
+        autoDetect: false,
+        run: (onSuccess, onError) => {
+            if (navigator.share) {
+                navigator.share({ title: 'Partage test', text: 'Test de partage via Laboratoire' });
+                onSuccess();
+            } else {
+                onError('Non supporté');
             }
         },
     },
