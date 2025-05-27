@@ -1,4 +1,4 @@
-import {FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap, FiMaximize, FiShare2, FiMic} from 'react-icons/fi';
+import {FiMapPin, FiBell, FiSmartphone, FiCpu, FiClipboard, FiMoon, FiWifi, FiEye, FiZap, FiMaximize, FiShare2, FiMic, FiCamera} from 'react-icons/fi';
 
 const testDefinitions = [
     {
@@ -122,6 +122,21 @@ const testDefinitions = [
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                 if (setStream) setStream(stream);
                 onSuccess('Micro activé');
+            } catch (err) {
+                onError(err.message);
+            }
+        },
+    },
+    {
+        id: 'camera',
+        label: 'Caméra',
+        icon: FiCamera,
+        autoDetect: false,
+        run: async (onSuccess, onError, setStream) => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                if (setStream) setStream(stream);
+                onSuccess('Caméra activée');
             } catch (err) {
                 onError(err.message);
             }
